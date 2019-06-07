@@ -24,8 +24,8 @@ suite('Functional Tests', function() {
        chai.request(server)
         .post('/api/issues/test')
         .send({
-          issue_title: 'Title',
-          issue_text: 'text',
+          issue_title: 'Title1',
+          issue_text: 'text1',
           created_by: 'Functional Test - Every field filled in',
           assigned_to: 'Chai and Mocha',
           status_text: 'In QA'
@@ -42,8 +42,8 @@ suite('Functional Tests', function() {
           assert.property(res.body, 'open');
           assert.property(res.body, '_id');
          
-          assert.equal(res.body.issue_title, 'Title');
-          assert.equal(res.body.issue_text, 'text');
+          assert.equal(res.body.issue_title, 'Title1');
+          assert.equal(res.body.issue_text, 'text1');
           assert.equal(res.body.created_by, 'Functional Test - Every field filled in');
           assert.equal(res.body.assigned_to, 'Chai and Mocha');
           assert.equal(res.body.status_text, 'In QA');
@@ -58,9 +58,9 @@ suite('Functional Tests', function() {
        chai.request(server)
         .post('/api/issues/test')
         .send({
-          issue_title: 'Title',
-          issue_text: 'text',
-          created_by: 'Functional Test - Required field filled in',
+          issue_title: 'Title2',
+          issue_text: 'text2',
+          created_by: 'Functional Test - Required fields filled in',
           assigned_to: '',
           status_text: ''
         })
@@ -76,9 +76,9 @@ suite('Functional Tests', function() {
           assert.property(res.body, 'open');
           assert.property(res.body, '_id');
          
-          assert.equal(res.body.issue_title, 'Title');
-          assert.equal(res.body.issue_text, 'text');
-          assert.equal(res.body.created_by, 'Functional Test - Required field filled in');
+          assert.equal(res.body.issue_title, 'Title2');
+          assert.equal(res.body.issue_text, 'text2');
+          assert.equal(res.body.created_by, 'Functional Test - Required fields filled in');
           assert.equal(res.body.assigned_to, '');
           assert.equal(res.body.status_text, '');
           assert.isTrue(res.body.open);
@@ -259,5 +259,12 @@ suite('Functional Tests', function() {
       });
       
     });
-
+    
+    after(async function() {
+      await chai.request(server)
+      .delete('/api/issues/test')
+      .send({
+        _id: _idToTest6
+      });
+    });
 });

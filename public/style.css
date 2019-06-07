@@ -9,6 +9,10 @@ body {
   color: #2200bb;
 }
 
+main {
+  text-align: center;
+}
+
 hr {
   border-color: #aa00ff;
 }
@@ -81,7 +85,7 @@ button[type=submit]:active {
 }
 
 .issue {
-  margin: 20px;
+  margin: 20px auto;
   padding: 5px;
   width: 60%;
   border: 2px solid blue;
